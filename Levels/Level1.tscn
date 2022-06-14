@@ -96,3 +96,4 @@ health = 100
 
 [node name="FierceTooth" parent="." instance=ExtResource( 4 )]
 position = Vector2( 577, 477 )
+speed = 300

@@ -8,6 +8,9 @@ var velocity = Vector2.ZERO
 var stage_arr = ["attack_1", "attack_2", "attack_3", "air_attack_1", "air_attack_2", "air_attack_3"]
 var is_dead = false
 var player_flip = false
+var max_player_energy = 100
+var player_energy = max_player_energy
+var regeneration_energy_per_second = 1
 
 # for knockback
 var repulsion = Vector2()
@@ -56,6 +59,7 @@ func _get_input_direction():
 		$effect.visible = true
 
 func _physics_process(delta):
+	print("energy = " ,player_energy)
 	if !is_dead:
 		velocity.y += GRAVITY * delta
 		velocity = move_and_slide(velocity, Vector2.UP)
@@ -63,16 +67,21 @@ func _physics_process(delta):
 func _attack_input():
 	if Input.is_action_just_pressed("attack_input"):
 		if is_on_floor():
-			if stage_tree.combo_stage == 1:
+			if stage_tree.combo_stage == 1 and player_energy >= 10:
+				player_energy -= 10
 				FSM.set_state(FSM.states.attack_1)
-			elif stage_tree.combo_stage == 2:
+			elif stage_tree.combo_stage == 2 and player_energy >= 15:
+				player_energy -= 15
 				FSM.set_state(FSM.states.attack_2)
-			elif stage_tree.combo_stage == 3:
+			elif stage_tree.combo_stage == 3 and player_energy >= 20:
+				player_energy -= 20
 				FSM.set_state(FSM.states.attack_3)
 		elif !is_on_floor():
-			if stage_tree.combo_stage == 1:
+			if stage_tree.combo_stage == 1 and player_energy >= 10:
+				player_energy -= 10
 				FSM.set_state(FSM.states.air_attack_1)
-			elif stage_tree.combo_stage == 2:
+			elif stage_tree.combo_stage == 2 and player_energy >= 10:
+				player_energy -= 10
 				FSM.set_state(FSM.states.air_attack_2)
 
 func check_anim_for_area():
@@ -94,3 +103,7 @@ func _set_hurt_state(knockback, knockback_air_height):
 	repulsion.y = knockback_air_height
 	repulsion.x = knockback
 	move_and_slide(repulsion)
+
+func _on_Regeneration_Energy_timeout():
+	if player_energy < max_player_energy:
+		player_energy += regeneration_energy_per_second

@@ -25,8 +25,9 @@ func _state_logic(_delta: float) -> void:
 	if !parent.is_dead:
 		parent._get_input_direction()
 		parent.check_anim_for_area()
-		parent._attack_input()
-		parent.get_node("AnimationTree")._attack_tree()
+		if parent.player_energy != 0:
+			parent._attack_input()
+			parent.get_node("AnimationTree")._attack_tree()
 	parent.show_state_player_label()
 
 func _get_transition() -> int:
