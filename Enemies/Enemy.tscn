@@ -45,7 +45,7 @@ shape = SubResource( 43 )
 [node name="AttackDetector" type="Area2D" parent="."]
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="AttackDetector"]
-position = Vector2( 71, -16 )
+position = Vector2( 65, -21 )
 shape = SubResource( 44 )
 
 [node name="RayCast2D" type="RayCast2D" parent="."]

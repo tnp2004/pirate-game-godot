@@ -1,7 +1,6 @@
 extends KinematicBody2D
 
 var GRAVITY = 2000
-var WALKSPEED = 1200
 var FRICTION = 0.2
 var JUMPFORCE = 700
 var velocity = Vector2.ZERO
@@ -14,6 +13,7 @@ var regeneration_energy_per_second = 1
 
 # for knockback
 var repulsion = Vector2()
+export(int) var WALKSPEED = 1200
 export(int) var player_knock_force = 5000
 
 export(int) var attack_damage = 3

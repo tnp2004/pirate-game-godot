@@ -1,5 +1,4 @@
 extends KinematicBody2D
-class_name Enemies
 
 onready var FSM_enemy = get_node("FiniteStateMachine")
 
@@ -47,6 +46,11 @@ func start_walk():
 func _on_AttackDetector_body_entered(body):
 	# damage for player
 	if body.is_in_group("Player"):
+		# when attack the player change direction
+		is_moving_left = !is_moving_left
+		scale.x = -scale.x
+		$Label.rect_scale.x = scale.x
+		
 		FSM_enemy.set_state(FSM_enemy.states.attack)
 		var knockback = knock_force if !is_moving_left else - knock_force
 		var knockback_air_height = - 500

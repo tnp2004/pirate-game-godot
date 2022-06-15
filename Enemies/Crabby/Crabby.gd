@@ -1,13 +1,12 @@
 extends KinematicBody2D
-class_name Enemies
 
 onready var FSM_enemy = get_node("FiniteStateMachine")
 
-export(int) var speed: int = 100
+export(int) var speed: int = 0
 export(int) var health = 10
 export(int) var attack_damage = 2
 export(int) var knock_force = 2000
-
+export var is_attacking = false
 
 var is_dead = false
 var repulsion = Vector2()
@@ -24,6 +23,7 @@ func _on_get_attack_area_area_entered(area):
 			$AttackDetector/CollisionShape2D.disabled = true
 			$get_attack_area/CollisionShape2D.disabled = true
 			is_dead = true
+			$Attack_Crabby.stop()
 			FSM_enemy.set_state(FSM_enemy.states.dead)
 
 func _process(_delta):
@@ -60,3 +60,7 @@ func _knockback_when_get_attack():
 	velocity.x = 0
 	repulsion.x = knockback
 	move_and_slide(repulsion)
+
+func _on_Attack_Crabby_timeout():
+	is_attacking = true
+	FSM_enemy.set_state(FSM_enemy.states.attack)
