@@ -5,6 +5,54 @@
 [ext_resource path="res://Enemies/PinkStart/PinkStart.gd" type="Script" id=3]
 [ext_resource path="res://Effects/EnemyDeathEffect.png" type="Texture" id=4]
 
+[sub_resource type="AtlasTexture" id=5]
+atlas = ExtResource( 1 )
+region = Rect2( 2208, 0, 96, 96 )
+
+[sub_resource type="AtlasTexture" id=6]
+atlas = ExtResource( 1 )
+region = Rect2( 2304, 0, 96, 96 )
+
+[sub_resource type="AtlasTexture" id=7]
+atlas = ExtResource( 1 )
+region = Rect2( 2400, 0, 96, 96 )
+
+[sub_resource type="AtlasTexture" id=8]
+atlas = ExtResource( 1 )
+region = Rect2( 2496, 0, 96, 96 )
+
+[sub_resource type="AtlasTexture" id=9]
+atlas = ExtResource( 1 )
+region = Rect2( 3360, 0, 96, 96 )
+
+[sub_resource type="AtlasTexture" id=10]
+atlas = ExtResource( 1 )
+region = Rect2( 3456, 0, 96, 96 )
+
+[sub_resource type="AtlasTexture" id=11]
+atlas = ExtResource( 1 )
+region = Rect2( 3552, 0, 96, 96 )
+
+[sub_resource type="AtlasTexture" id=12]
+atlas = ExtResource( 1 )
+region = Rect2( 3648, 0, 96, 96 )
+
+[sub_resource type="AtlasTexture" id=1]
+atlas = ExtResource( 1 )
+region = Rect2( 2592, 0, 96, 96 )
+
+[sub_resource type="AtlasTexture" id=2]
+atlas = ExtResource( 1 )
+region = Rect2( 2688, 0, 96, 96 )
+
+[sub_resource type="AtlasTexture" id=3]
+atlas = ExtResource( 1 )
+region = Rect2( 2784, 0, 96, 96 )
+
+[sub_resource type="AtlasTexture" id=4]
+atlas = ExtResource( 1 )
+region = Rect2( 2880, 0, 96, 96 )
+
 [sub_resource type="AtlasTexture" id=48]
 atlas = ExtResource( 4 )
 region = Rect2( 128, 0, 32, 32 )
@@ -29,64 +77,16 @@ region = Rect2( 256, 0, 32, 32 )
 atlas = ExtResource( 4 )
 region = Rect2( 288, 0, 32, 32 )
 
-[sub_resource type="AtlasTexture" id=5]
-atlas = ExtResource( 1 )
-region = Rect2( 2208, 0, 96, 96 )
-
-[sub_resource type="AtlasTexture" id=6]
-atlas = ExtResource( 1 )
-region = Rect2( 2304, 0, 96, 96 )
-
-[sub_resource type="AtlasTexture" id=7]
-atlas = ExtResource( 1 )
-region = Rect2( 2400, 0, 96, 96 )
-
-[sub_resource type="AtlasTexture" id=8]
-atlas = ExtResource( 1 )
-region = Rect2( 2496, 0, 96, 96 )
-
-[sub_resource type="AtlasTexture" id=1]
-atlas = ExtResource( 1 )
-region = Rect2( 2592, 0, 96, 96 )
-
-[sub_resource type="AtlasTexture" id=2]
-atlas = ExtResource( 1 )
-region = Rect2( 2688, 0, 96, 96 )
-
-[sub_resource type="AtlasTexture" id=3]
-atlas = ExtResource( 1 )
-region = Rect2( 2784, 0, 96, 96 )
-
-[sub_resource type="AtlasTexture" id=4]
-atlas = ExtResource( 1 )
-region = Rect2( 2880, 0, 96, 96 )
-
-[sub_resource type="AtlasTexture" id=9]
-atlas = ExtResource( 1 )
-region = Rect2( 3360, 0, 96, 96 )
-
-[sub_resource type="AtlasTexture" id=10]
-atlas = ExtResource( 1 )
-region = Rect2( 3456, 0, 96, 96 )
-
-[sub_resource type="AtlasTexture" id=11]
-atlas = ExtResource( 1 )
-region = Rect2( 3552, 0, 96, 96 )
-
-[sub_resource type="AtlasTexture" id=12]
-atlas = ExtResource( 1 )
-region = Rect2( 3648, 0, 96, 96 )
-
 [sub_resource type="SpriteFrames" id=13]
 animations = [ {
-"frames": [ SubResource( 48 ), SubResource( 49 ), SubResource( 50 ), SubResource( 51 ), SubResource( 52 ), SubResource( 53 ) ],
-"loop": true,
-"name": "effect_dead",
-"speed": 5.0
-}, {
 "frames": [ SubResource( 5 ), SubResource( 6 ), SubResource( 7 ), SubResource( 8 ) ],
 "loop": true,
 "name": "move",
+"speed": 5.0
+}, {
+"frames": [ SubResource( 9 ), SubResource( 10 ), SubResource( 11 ), SubResource( 12 ) ],
+"loop": true,
+"name": "dead",
 "speed": 5.0
 }, {
 "frames": [ SubResource( 1 ), SubResource( 2 ), SubResource( 3 ), SubResource( 4 ) ],
@@ -94,9 +94,9 @@ animations = [ {
 "name": "hurt",
 "speed": 5.0
 }, {
-"frames": [ SubResource( 9 ), SubResource( 10 ), SubResource( 11 ), SubResource( 12 ) ],
+"frames": [ SubResource( 48 ), SubResource( 49 ), SubResource( 50 ), SubResource( 51 ), SubResource( 52 ), SubResource( 53 ) ],
 "loop": true,
-"name": "dead",
+"name": "effect_dead",
 "speed": 5.0
 } ]
 
@@ -232,7 +232,7 @@ extents = Vector2( 32, 32 )
 extents = Vector2( 36, 35.5 )
 
 [sub_resource type="RectangleShape2D" id=44]
-extents = Vector2( 26.5, 21.25 )
+extents = Vector2( 63.75, 36 )
 
 [node name="PinkStart" type="KinematicBody2D"]
 collision_layer = 4
@@ -273,7 +273,7 @@ shape = SubResource( 43 )
 [node name="AttackDetector" type="Area2D" parent="."]
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="AttackDetector"]
-position = Vector2( 64, 14 )
+position = Vector2( 26.75, 12 )
 shape = SubResource( 44 )
 
 [node name="RayCast2D" type="RayCast2D" parent="."]

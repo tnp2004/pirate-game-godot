@@ -20,7 +20,11 @@ func _get_transition() -> int:
 					return states.attack
 			else:
 				return states.dead
-			
+		
+		states.hurt:
+			if !animation_player.is_playing():
+				return states.idle
+		
 	return -1
 	
 func _enter_state(_previous_state: int, _new_state: int) -> void:

@@ -18,7 +18,7 @@ func _on_get_attack_area_area_entered(area):
 	if area.name == "attack_area":
 		var damage = area.get_parent().attack_damage
 		health -= damage
-		_knockback_when_get_attack()
+		FSM_enemy.set_state(FSM_enemy.states.hurt)
 		if health <= 0:
 			$AttackDetector/CollisionShape2D.disabled = true
 			$get_attack_area/CollisionShape2D.disabled = true
