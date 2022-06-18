@@ -8,6 +8,9 @@ export(int) var attack_damage = 2
 export(int) var knock_force = 2000
 export var is_attacking = false
 
+onready var parent = get_parent()
+onready var player_flip = parent.get_node("Player").player_flip
+
 var is_dead = false
 var repulsion = Vector2()
 var velocity: Vector2 = Vector2.ZERO
@@ -54,7 +57,7 @@ func _on_AttackDetector_body_entered(body):
 		body._set_hurt_state(knockback, knockback_air_height)
 
 func _knockback_when_get_attack():
-	var knockback = knock_force if is_moving_left else - knock_force
+	var knockback = knock_force if !player_flip else - knock_force
 	var knockback_air_height = 1000
 	FSM_enemy.set_state(FSM_enemy.states.hurt)
 	velocity.x = 0

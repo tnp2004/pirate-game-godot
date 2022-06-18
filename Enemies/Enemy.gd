@@ -2,11 +2,13 @@ extends KinematicBody2D
 class_name Enemies
 
 onready var FSM_enemy = get_node("FiniteStateMachine")
+onready var parent = get_parent()
+onready var player_flip = parent.get_node("Player").player_flip
 
 export(int) var speed: int = 100
 export(int) var health = 10
 export(int) var attack_damage = 2
-export(int) var knock_force = 2000
+export(int) var knock_force = 5000
 
 
 var is_dead = false
@@ -28,6 +30,8 @@ func _on_get_attack_area_area_entered(area):
 
 func _process(_delta):
 	$Label.text = FSM_enemy.animation_player.current_animation
+	player_flip = parent.get_node("Player").player_flip
+	print(player_flip)
 		
 func move_character():
 	velocity.x = -speed if is_moving_left else speed
@@ -49,12 +53,12 @@ func _on_AttackDetector_body_entered(body):
 	if body.is_in_group("Player"):
 		FSM_enemy.set_state(FSM_enemy.states.attack)
 		var knockback = knock_force if !is_moving_left else - knock_force
-		var knockback_air_height = - 500
+		var knockback_air_height = - 1000
 		body.health -= attack_damage
 		body._set_hurt_state(knockback, knockback_air_height)
 
 func _knockback_when_get_attack():
-	var knockback = knock_force if is_moving_left else - knock_force
+	var knockback = knock_force if !player_flip else - knock_force
 	var knockback_air_height = 1000
 	FSM_enemy.set_state(FSM_enemy.states.hurt)
 	velocity.x = 0
