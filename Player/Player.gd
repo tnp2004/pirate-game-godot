@@ -9,7 +9,7 @@ var is_dead = false
 var player_flip = false
 var max_player_energy = 100
 var player_energy = max_player_energy
-var regeneration_energy_per_second = 1
+var regeneration_energy_per_second = 5
 
 # for knockback
 var repulsion = Vector2()

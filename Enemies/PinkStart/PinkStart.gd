@@ -16,10 +16,21 @@ var velocity: Vector2 = Vector2.ZERO
 var gravity = 500
 var is_moving_left = false
 
+const damage_indicator = preload("res://DamageIndicator.tscn")
+
+func spawn_damage_indicator(damage):
+	var indicator = damage_indicator.instance()
+	var indicator_position = self.global_position
+	indicator.global_position = (indicator_position)
+	get_tree().current_scene.add_child(indicator)
+	if indicator:
+		indicator.label.text = str(damage)
+
 func _on_get_attack_area_area_entered(area):
 	if area.name == "attack_area":
 		var damage = area.get_parent().attack_damage
 		health -= damage
+		spawn_damage_indicator(damage)
 		_knockback_when_get_attack()
 		if health <= 0:
 			$AttackDetector/CollisionShape2D.disabled = true
