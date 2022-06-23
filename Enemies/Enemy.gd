@@ -65,6 +65,7 @@ func _on_AttackDetector_body_entered(body):
 		var knockback = knock_force if !is_moving_left else - knock_force
 		var knockback_air_height = - 1000
 		body.health -= attack_damage
+		get_parent().get_node("CanvasLayer/gameBar").health_bar(body.health)
 		body._set_hurt_state(knockback, knockback_air_height)
 
 func _knockback_when_get_attack():

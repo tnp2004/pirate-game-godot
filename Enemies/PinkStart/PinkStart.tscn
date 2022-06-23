@@ -37,6 +37,22 @@ region = Rect2( 3552, 0, 96, 96 )
 atlas = ExtResource( 1 )
 region = Rect2( 3648, 0, 96, 96 )
 
+[sub_resource type="AtlasTexture" id=5]
+atlas = ExtResource( 1 )
+region = Rect2( 2208, 0, 96, 96 )
+
+[sub_resource type="AtlasTexture" id=6]
+atlas = ExtResource( 1 )
+region = Rect2( 2304, 0, 96, 96 )
+
+[sub_resource type="AtlasTexture" id=7]
+atlas = ExtResource( 1 )
+region = Rect2( 2400, 0, 96, 96 )
+
+[sub_resource type="AtlasTexture" id=8]
+atlas = ExtResource( 1 )
+region = Rect2( 2496, 0, 96, 96 )
+
 [sub_resource type="AtlasTexture" id=48]
 atlas = ExtResource( 4 )
 region = Rect2( 128, 0, 32, 32 )
@@ -61,22 +77,6 @@ region = Rect2( 256, 0, 32, 32 )
 atlas = ExtResource( 4 )
 region = Rect2( 288, 0, 32, 32 )
 
-[sub_resource type="AtlasTexture" id=5]
-atlas = ExtResource( 1 )
-region = Rect2( 2208, 0, 96, 96 )
-
-[sub_resource type="AtlasTexture" id=6]
-atlas = ExtResource( 1 )
-region = Rect2( 2304, 0, 96, 96 )
-
-[sub_resource type="AtlasTexture" id=7]
-atlas = ExtResource( 1 )
-region = Rect2( 2400, 0, 96, 96 )
-
-[sub_resource type="AtlasTexture" id=8]
-atlas = ExtResource( 1 )
-region = Rect2( 2496, 0, 96, 96 )
-
 [sub_resource type="SpriteFrames" id=13]
 animations = [ {
 "frames": [ SubResource( 1 ), SubResource( 2 ), SubResource( 3 ), SubResource( 4 ) ],
@@ -89,14 +89,14 @@ animations = [ {
 "name": "dead",
 "speed": 5.0
 }, {
-"frames": [ SubResource( 48 ), SubResource( 49 ), SubResource( 50 ), SubResource( 51 ), SubResource( 52 ), SubResource( 53 ) ],
-"loop": true,
-"name": "effect_dead",
-"speed": 5.0
-}, {
 "frames": [ SubResource( 5 ), SubResource( 6 ), SubResource( 7 ), SubResource( 8 ) ],
 "loop": true,
 "name": "move",
+"speed": 5.0
+}, {
+"frames": [ SubResource( 48 ), SubResource( 49 ), SubResource( 50 ), SubResource( 51 ), SubResource( 52 ), SubResource( 53 ) ],
+"loop": true,
+"name": "effect_dead",
 "speed": 5.0
 } ]
 
@@ -282,6 +282,7 @@ position = Vector2( -2, 14 )
 shape = SubResource( 42 )
 
 [node name="Label" type="Label" parent="."]
+visible = false
 margin_left = -46.0
 margin_top = -51.0
 margin_right = 54.0
@@ -304,6 +305,10 @@ shape = SubResource( 44 )
 position = Vector2( 0, 12 )
 enabled = true
 cast_to = Vector2( 50, 0 )
+
+[node name="checkFloor" type="RayCast2D" parent="."]
+position = Vector2( 38, 7 )
+enabled = true
 
 [connection signal="area_entered" from="get_attack_area" to="." method="_on_get_attack_area_area_entered"]
 [connection signal="body_entered" from="AttackDetector" to="." method="_on_AttackDetector_body_entered"]

@@ -9,7 +9,7 @@ var is_dead = false
 var player_flip = false
 var max_player_energy = 100
 var player_energy = max_player_energy
-var regeneration_energy_per_second = 5
+var regeneration_energy_per_second = 15
 
 # for knockback
 var repulsion = Vector2()
@@ -17,7 +17,7 @@ export(int) var WALKSPEED = 1200
 export(int) var player_knock_force = 3000
 
 export(int) var attack_damage = 3
-export(int) var health = 20
+export(int) var health = 100
 
 onready var stage_tree = get_node("AnimationTree")
 onready var FSM = get_node("FiniteStateMachine")
@@ -58,8 +58,7 @@ func _get_input_direction():
 	if velocity.x != 0 and is_on_floor() and !animation_player.current_animation in stage_arr:
 		$effect.visible = true
 
-func _physics_process(delta):
-	print("energy = " ,player_energy)
+func _physics_process(delta):	
 	if !is_dead:
 		velocity.y += GRAVITY * delta
 		velocity = move_and_slide(velocity, Vector2.UP)
@@ -83,6 +82,8 @@ func _attack_input():
 			elif stage_tree.combo_stage == 2 and player_energy >= 10:
 				player_energy -= 10
 				FSM.set_state(FSM.states.air_attack_2)
+				
+		get_parent().get_node("CanvasLayer/gameBar").energy_bar(player_energy)
 
 func check_anim_for_area():
 	var now_stage = animation_player.current_animation
@@ -107,3 +108,7 @@ func _set_hurt_state(knockback, knockback_air_height):
 func _on_Regeneration_Energy_timeout():
 	if player_energy < max_player_energy:
 		player_energy += regeneration_energy_per_second
+		get_parent().get_node("CanvasLayer/gameBar").energy_bar(player_energy)
+
+func change_scene_when_dead():
+	get_tree().change_scene("res://Levels/Level1.tscn")

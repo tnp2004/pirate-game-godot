@@ -54,6 +54,11 @@ func detect_turn_around():
 		scale.x = -scale.x
 		$Label.rect_scale.x = scale.x
 	
+	if !$checkFloor.is_colliding():
+		is_moving_left = !is_moving_left
+		scale.x = -scale.x
+		$Label.rect_scale.x = scale.x
+	
 func start_walk(): 
 	$AnimationPlayer.play("move")
 
@@ -69,6 +74,7 @@ func _on_AttackDetector_body_entered(body):
 		var knockback = knock_force if is_moving_left else - knock_force
 		var knockback_air_height = - 500
 		body.health -= attack_damage
+		get_parent().get_node("CanvasLayer/gameBar").health_bar(body.health)
 		body._set_hurt_state(knockback, knockback_air_height)
 
 func _knockback_when_get_attack():
