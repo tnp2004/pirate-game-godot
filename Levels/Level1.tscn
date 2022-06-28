@@ -1323,6 +1323,7 @@ attack_damage = 15
 [node name="Player" parent="." instance=ExtResource( 2 )]
 position = Vector2( 113, 462 )
 WALKSPEED = 2000
+attack_damage = 5
 
 [node name="CanvasLayer" type="CanvasLayer" parent="."]
 
